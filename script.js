@@ -99,7 +99,7 @@ if (json.success){
  */
 const removePlayer = async (playerId) => {
   try {
-const res = await fetch(`${API_URL}/${id}`, {
+const res = await fetch(`${API_URL}/${playerId}`, {
     method: "DELETE",
 })
 console.log(res);
@@ -188,14 +188,16 @@ $player.innerHTML = `
 </figure>
 <p>${selectedPlayer.breed}</p>
 <p>${selectedPlayer.status}</p>
-<p>${selectedPlayer.teamId}</p>
+<p>${selectedPlayer.id}</p>
+
+
 <button>Remove player</button>
 `;
 
  //event listener that removes a player
 const $button = $player.querySelector("button");
-$button.addEventListener("click", function (){
-    removePlayer(selectedPlayer.id);
+$button.addEventListener("click", async function (){
+   await removePlayer(selectedPlayer.id);
 });
 return $player;
 }
